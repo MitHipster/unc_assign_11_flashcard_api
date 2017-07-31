@@ -1,0 +1,22 @@
+{
+  "name": "flashcard-api",
+  "version": "1.0.0",
+  "description": "Flashcard API",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MitHipster/unc_assign_11_flashcard_api.git"
+  },
+  "author": "Tim Acker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MitHipster/unc_assign_11_flashcard_api/issues"
+  },
+  "homepage": "https://github.com/MitHipster/unc_assign_11_flashcard_api#readme",
+  "dependencies": {
+    "inquirer": "^3.2.1"
+  }
+}
