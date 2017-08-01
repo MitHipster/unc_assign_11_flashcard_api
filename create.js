@@ -93,7 +93,7 @@ let confirm = function (choice, inputs, type, q, a) {
       if (type === 'basic') {
         let card = new Basic(inputs.question, inputs.answer);
       } else {
-        let card = new Cloze(inputs.question, inputs.answer);
+        let card = new Cloze(inputs.question, inputs.answer, choice);
       }
     } else {
       // Run option again to correct mistake
@@ -104,3 +104,5 @@ let confirm = function (choice, inputs, type, q, a) {
 };
 
 prompt();
+
+module.exports.choices = choices;

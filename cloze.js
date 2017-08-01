@@ -1,25 +1,28 @@
 /*jslint esversion: 6, browser: true*/
+const create = require('./create.js');
 const fs = require('fs');
 
-let Cloze = function(fullText, cloze) {
+let Cloze = function(fullText, cloze, choice) {
+  this.partialText(fullText, cloze, choice);
   this.fullText = fullText;
   this.cloze = cloze;
-  this.partialText(fullText, cloze);
 };
 
-Cloze.prototype.partialText = function (fullText, cloze) {
-  if (fullText.toLowerCase().indexOf(cloze.toLowerCase()) !== -1) {
-    this.log(fullText, cloze);
-    return fullText.replace(cloze, '...');
+Cloze.prototype.partialText = function (fullText, cloze, choice) {
+  if (fullText.toLowerCase().includes(cloze.toLowerCase())) {
+    let partial = fullText.replace(cloze, '...');
+    this.log(partial, cloze);
+    return partial;
   } else {
     this.err('Cloze not found in full text. Please re-enter.');
+    create.choices(choice);
   }
 };
 
-Cloze.prototype.log = function(fullText, cloze) {
+Cloze.prototype.log = function(partialText, cloze) {
   let card =
-    'Question: ' + fullText + '\n' +
-    'Answer: ' + cloze + '\n';
+    'Full statement: ' + partialText + '\n' +
+    'Cloze deletion: ' + cloze + '\n\n';
   fs.appendFile('cloze.txt', card, function (err) {
     if (err) console.error(err);
     console.log('Cloze flashcard has been added.');

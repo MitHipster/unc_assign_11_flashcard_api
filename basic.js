@@ -10,7 +10,7 @@ let Basic = function(front, back) {
 Basic.prototype.log = function(front, back) {
   let card =
     'Question: ' + front + '\n' +
-    'Answer: ' + back + '\n';
+    'Answer: ' + back + '\n\n';
   fs.appendFile('basic.txt', card, function (err) {
     if (err) console.error(err);
     console.log('Basic flashcard has been added.');
