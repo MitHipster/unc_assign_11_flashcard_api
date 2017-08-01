@@ -16,6 +16,4 @@ Cloze.prototype.err = function (message) {
   console.log(message);
 };
 
-let test = new Cloze('9 + 9 = 18', '19');
-console.log(test.partialText());
 module.exports = Cloze;

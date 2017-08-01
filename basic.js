@@ -2,8 +2,9 @@
 let Basic = function(front, back) {
   this.front = front;
   this.back = back;
+  this.print = function () {
+    console.log(front, back);
+  };
 };
 
-let test = new Basic('Who was the first president?', 'George Washington');
-console.log(test);
 module.exports = Basic;
