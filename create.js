@@ -2,7 +2,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const Basic = require('./basic.js');
-// let Cloze = require('./cloze.js');
+const Cloze = require('./cloze.js');
+
 const messages = {
   basic: {
     inputQ: 'Please enter a question.',
@@ -91,6 +92,8 @@ let confirm = function (choice, inputs, type, q, a) {
     if (answer.validate) {
       if (type === 'basic') {
         let card = new Basic(inputs.question, inputs.answer);
+      } else {
+        let card = new Cloze(inputs.question, inputs.answer);
       }
     } else {
       // Run option again to correct mistake
