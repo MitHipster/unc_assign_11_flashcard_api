@@ -2,10 +2,10 @@
 const create = require('./create.js');
 const fs = require('fs');
 
-let Basic = function(front, back) {
+let Basic = function(front, back, test) {
   this.front = front;
   this.back = back;
-  this.log(front, back);
+  if (!test) this.log(front, back);
 };
 
 Basic.prototype.log = function(front, back) {
