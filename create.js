@@ -90,7 +90,7 @@ let confirm = function (choice, inputs, type, q, a) {
   }).then(function (answer) {
     if (answer.validate) {
       if (type === 'basic') {
-        
+        let card = new Basic(inputs.question, inputs.answer);
       }
     } else {
       // Run option again to correct mistake
