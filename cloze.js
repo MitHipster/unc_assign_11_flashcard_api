@@ -24,8 +24,9 @@ Cloze.prototype.log = function(partialText, cloze) {
     'Full statement: ' + partialText + '\n' +
     'Cloze deletion: ' + cloze + '\n\n';
   fs.appendFile('cloze.txt', card, function (error) {
-    if (error) create.err('Cloze file not found.');
-    console.log('Cloze flashcard has been added.');
+    if (error) create.err('Cloze flashcard could not be added.\n');
+    console.log('New cloze flashcard has been added.\n');
+    create.runPrompt();
   });
 };
 

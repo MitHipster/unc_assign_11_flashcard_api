@@ -13,8 +13,9 @@ Basic.prototype.log = function(front, back) {
     'Question: ' + front + '\n' +
     'Answer: ' + back + '\n\n';
   fs.appendFile('basic.txt', card, function (error) {
-    if (error) create.err('Basic file not found.');
-    console.log('Basic flashcard has been added.');
+    if (error) create.err('Basic flashcard could not be added.');
+    console.log('New basic flashcard has been added.\n');
+    create.runPrompt();
   });
 };
 

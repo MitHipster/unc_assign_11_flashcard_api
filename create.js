@@ -19,7 +19,7 @@ const messages = {
   }
 };
 
-let prompt = function () {
+let runPrompt = function () {
   inquirer.prompt({
       type: 'list',
       name: 'options',
@@ -99,7 +99,6 @@ let confirm = function (choice, inputs, type, q, a) {
         let card = new Cloze(inputs.question, inputs.answer, choice);
       }
     }
-    prompt();
   });
 };
 
@@ -109,7 +108,7 @@ let display = function (type) {
       err('The file ' + type + '.txt does not exist.\n');
     } else {
       console.log('\n' + data);
-      prompt();
+      runPrompt();
     }
   });
 };
@@ -118,7 +117,8 @@ let err = function (message) {
   console.error(message);
 };
 
-prompt();
+runPrompt();
 
+module.exports.runPrompt = runPrompt;
 module.exports.choices = choices;
 module.exports.err = err;
