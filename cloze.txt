@@ -1,1 +1,6 @@
+Full statement: ... was the first president of the United States.
+Cloze deletion: George Washington
+
+Full statement: The highest grossing movie of all-time is ....
+Cloze deletion: Avatar
 

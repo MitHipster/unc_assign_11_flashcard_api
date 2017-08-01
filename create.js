@@ -28,7 +28,8 @@ let prompt = function () {
         '1. Create basic flashcard',
         '2. Create cloze flashcard',
         '3. View basic flashcard entries',
-        '4. View cloze flashcard entries'
+        '4. View cloze flashcard entries',
+        '5. Quit program'
       ]
   }).then(function (choice) {
     choices(choice.options[0]);
@@ -47,10 +48,12 @@ let choices = function (choice) {
       flashCreate(type, choice);
       break;
     case '3':
-      console.log('you selected view basic flashcards');
+      type = 'basic';
+      display(type);
       break;
     case '4':
-      console.log('you selected view cloze flashcards');
+      type = 'cloze';
+      display(type);
       break;
     default:
       return false;
@@ -86,7 +89,7 @@ let confirm = function (choice, inputs, type, q, a) {
   inquirer.prompt({
     type: 'confirm',
     name: 'validate',
-    message: 'Are the entries above correct?',
+    message: 'Do you want to save this flashcard?',
     default: true
   }).then(function (answer) {
     if (answer.validate) {
@@ -95,14 +98,27 @@ let confirm = function (choice, inputs, type, q, a) {
       } else {
         let card = new Cloze(inputs.question, inputs.answer, choice);
       }
+    }
+    prompt();
+  });
+};
+
+let display = function (type) {
+  fs.readFile(type + '.txt', 'utf8', function (error, data) {
+    if (error) {
+      err('The file ' + type + '.txt does not exist.\n');
     } else {
-      // Run option again to correct mistake
-      console.log('Please re-enter to fix errors or make changes.');
-      choices(choice);
+      console.log('\n' + data);
+      prompt();
     }
   });
+};
+
+let err = function (message) {
+  console.error(message);
 };
 
 prompt();
 
 module.exports.choices = choices;
+module.exports.err = err;
