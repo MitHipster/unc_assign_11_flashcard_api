@@ -1,6 +1,7 @@
 /*jslint esversion: 6, browser: true*/
 const inquirer = require('inquirer');
 const fs = require('fs');
+const chalk = require('chalk');
 const Basic = require('./basic.js');
 const Cloze = require('./cloze.js');
 
@@ -83,8 +84,8 @@ let flashType = function (type) {
 
 let confirm = function (type, q, a) {
   console.log(
-    '\n' + messages[type].confirmQ + ' ' + q +
-    '\n' + messages[type].confirmA + ' ' + a + '\n');
+    '\n' + messages[type].confirmQ + ' ' + chalk.cyan(q) +
+    '\n' + messages[type].confirmA + ' ' + chalk.cyan(a) + '\n');
   inquirer.prompt({
     type: 'confirm',
     name: 'validate',

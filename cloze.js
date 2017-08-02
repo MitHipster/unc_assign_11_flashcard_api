@@ -1,5 +1,6 @@
 /*jslint esversion: 6, browser: true*/
 const fs = require('fs');
+const chalk = require('chalk');
 
 let Cloze = function(fullText, cloze, test) {
   if (this instanceof Cloze) {
@@ -17,7 +18,7 @@ Cloze.prototype.partial = function (fullText, cloze, test) {
     if(!test) this.log(text, cloze);
     return text;
   } else {
-    console.error('Cloze not found in full text. Please re-enter.\n');
+    console.error(chalk.red('Cloze not found in full text. Please re-enter.\n'));
   }
 };
 
@@ -27,7 +28,7 @@ Cloze.prototype.log = function(text, cloze) {
     'Cloze deletion: ' + cloze + '\n\n';
   fs.appendFile('cloze.txt', card, function (error) {
     if (error) throw error;
-    console.log('New cloze flashcard has been added.\n');
+    console.log(chalk.green('New cloze flashcard has been added.\n'));
   });
 };
 

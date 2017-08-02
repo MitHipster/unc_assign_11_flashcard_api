@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/MitHipster/unc_assign_11_flashcard_api#readme",
   "dependencies": {
+    "chalk": "^2.0.1",
     "inquirer": "^3.2.1"
   }
 }

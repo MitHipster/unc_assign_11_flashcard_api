@@ -1,5 +1,6 @@
 /*jslint esversion: 6, browser: true*/
 const fs = require('fs');
+const chalk = require('chalk');
 
 let Basic = function(front, back, test) {
   if (this instanceof Basic) {
@@ -17,7 +18,7 @@ Basic.prototype.log = function(front, back) {
     'Answer: ' + back + '\n\n';
   fs.appendFile('basic.txt', card, function (error) {
     if (error) throw error;
-    console.log('New basic flashcard has been added.\n');
+    console.log(chalk.green('New basic flashcard has been added.\n'));
   });
 };
 
