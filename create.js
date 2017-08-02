@@ -41,11 +41,11 @@ let choices = function (choice) {
   switch (choice) {
     case '1':
       type = 'basic';
-      flashCreate(type, choice);
+      flashCreate(type);
       break;
     case '2':
       type = 'cloze';
-      flashCreate(type, choice);
+      flashCreate(type);
       break;
     case '3':
       type = 'basic';
@@ -60,14 +60,14 @@ let choices = function (choice) {
   }
 };
 
-let flashCreate = function(type, choice) {
+let flashCreate = function(type) {
   inquirer.prompt(flashType(type)).then(function (inputs) {
-    confirm(choice, inputs, type, messages[type].confirmQ, messages[type].confirmA);
+    confirm(type, inputs.question, inputs.answer);
   });
 };
 
 let flashType = function (type) {
-  let flashBasic = [
+  return [
     {
       type: 'input',
       name: 'question',
@@ -79,13 +79,12 @@ let flashType = function (type) {
       message: messages[type].inputA
     }
   ];
-  return flashBasic;
 };
 
-let confirm = function (choice, inputs, type, q, a) {
+let confirm = function (type, q, a) {
   console.log(
-    '\n' + q + ' ' + inputs.question +
-    '\n' + a + ' ' + inputs.answer + '\n');
+    '\n' + messages[type].confirmQ + ' ' + q +
+    '\n' + messages[type].confirmA + ' ' + a + '\n');
   inquirer.prompt({
     type: 'confirm',
     name: 'validate',
@@ -93,33 +92,20 @@ let confirm = function (choice, inputs, type, q, a) {
     default: true
   }).then(function (answer) {
     if (answer.validate) {
-      if (type === 'basic') {
-        let card = new Basic(inputs.question, inputs.answer);
-      } else {
-        let card = new Cloze(inputs.question, inputs.answer, choice);
-      }
+      let card;
+      if (type === 'basic') card = new Basic(q, a);
+      if (type === 'cloze') card = new Cloze(q, a);
     }
-    setTimeout(runPrompt, 200);
+    setTimeout(runPrompt, 250);
   });
 };
 
 let display = function (type) {
   fs.readFile(type + '.txt', 'utf8', function (error, data) {
-    if (error) {
-      err('The file ' + type + '.txt does not exist.\n');
-    } else {
-      console.log('\n' + data);
-      runPrompt();
-    }
+    if (error) throw error;
+    console.log('\n' + data);
+    runPrompt();
   });
 };
 
-let err = function (message) {
-  console.error(message);
-};
-
 runPrompt();
-
-module.exports.runPrompt = runPrompt;
-module.exports.choices = choices;
-module.exports.err = err;
