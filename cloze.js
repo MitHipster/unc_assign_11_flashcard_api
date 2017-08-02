@@ -1,5 +1,4 @@
 /*jslint esversion: 6, browser: true*/
-const create = require('./create.js');
 const fs = require('fs');
 
 let Cloze = function(fullText, cloze, choice) {
@@ -14,8 +13,7 @@ Cloze.prototype.partialText = function (fullText, cloze, choice) {
     this.log(partial, cloze);
     return partial;
   } else {
-    create.err('Cloze not found in full text. Please re-enter.\n');
-    create.choices(choice);
+    console.error('Cloze not found in full text. Please re-enter.\n');
   }
 };
 
@@ -24,9 +22,8 @@ Cloze.prototype.log = function(partialText, cloze) {
     'Full statement: ' + partialText + '\n' +
     'Cloze deletion: ' + cloze + '\n\n';
   fs.appendFile('cloze.txt', card, function (error) {
-    if (error) create.err('Cloze flashcard could not be added.\n');
+    if (error) throw error;
     console.log('New cloze flashcard has been added.\n');
-    create.runPrompt();
   });
 };
 

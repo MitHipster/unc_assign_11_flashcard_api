@@ -99,6 +99,7 @@ let confirm = function (choice, inputs, type, q, a) {
         let card = new Cloze(inputs.question, inputs.answer, choice);
       }
     }
+    setTimeout(runPrompt, 200);
   });
 };
 
