@@ -1,11 +1,12 @@
 /*jslint esversion: 6, browser: true*/
+const chalk = require('chalk');
 const Basic = require('./basic.js');
 const Cloze = require('./cloze.js');
 
 let firstPresident = new Basic('Who was the first president of the United States?', 'George Washington', true);
 
 // Who was the first president of the United States?
-console.log('\nBasic: \n' + firstPresident.front);
+console.log(chalk.green('\nBasic: \n') + firstPresident.front);
 
 // George Washington
 console.log(firstPresident.back + '\n');
@@ -13,7 +14,7 @@ console.log(firstPresident.back + '\n');
 let firstPresidentCloze = new Cloze('George Washington was the first president of the United States.', 'George Washington', true);
 
 // George Washington
-console.log('Cloze: \n' + firstPresidentCloze.cloze);
+console.log(chalk.green('Cloze: \n') + firstPresidentCloze.cloze);
 
 // ... was the first president of the United States.
 console.log(firstPresidentCloze.partialText);
@@ -27,13 +28,13 @@ let brokenCloze = new Cloze("This doesn't work", 'oops');
 // Scope safe constructor tests
 let scope = Basic("Use this test to handle a constructor call without the 'new' keyword provided.", 'instanceof', true);
 
-console.log('Scope Safe Basic: \n' + scope.front);
+console.log(chalk.green('Scope Safe Basic: \n') + scope.front);
 
 console.log(scope.back + '\n');
 
 let scopeCloze = Cloze("Use instanceof to handle a constructor call without the 'new' keyword provided.", 'instanceof', true);
 
-console.log('Cloze: \n' + scopeCloze.cloze);
+console.log(chalk.green('Scope Safe Cloze: \n') + scopeCloze.cloze);
 
 console.log(scopeCloze.partialText);
 
