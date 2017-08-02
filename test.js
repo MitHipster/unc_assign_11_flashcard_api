@@ -20,3 +20,21 @@ console.log(firstPresidentCloze.partialText);
 
 // George Washington was the first president of the United States.
 console.log(firstPresidentCloze.fullText + '\n');
+
+// Should throw or log an error because 'oops' doesn't appear in "This doesn't work"
+let brokenCloze = new Cloze("This doesn't work", 'oops');
+
+// Scope safe constructor tests
+let scope = Basic("Use this test to handle a constructor call without the 'new' keyword provided.", 'instanceof', true);
+
+console.log('Scope Safe Basic: \n' + scope.front);
+
+console.log(scope.back + '\n');
+
+let scopeCloze = Cloze("Use instanceof to handle a constructor call without the 'new' keyword provided.", 'instanceof', true);
+
+console.log('Cloze: \n' + scopeCloze.cloze);
+
+console.log(scopeCloze.partialText);
+
+console.log(scopeCloze.fullText + '\n');

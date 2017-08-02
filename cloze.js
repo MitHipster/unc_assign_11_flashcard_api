@@ -2,9 +2,13 @@
 const fs = require('fs');
 
 let Cloze = function(fullText, cloze, test) {
-  this.partialText = this.partial(fullText, cloze, test);
-  this.fullText = fullText;
-  this.cloze = cloze;
+  if (this instanceof Cloze) {
+    this.partialText = this.partial(fullText, cloze, test);
+    this.fullText = fullText;
+    this.cloze = cloze;
+  } else {
+    return new Cloze(fullText, cloze, test);
+  }
 };
 
 Cloze.prototype.partial = function (fullText, cloze, test) {

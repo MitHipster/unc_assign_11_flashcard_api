@@ -2,9 +2,13 @@
 const fs = require('fs');
 
 let Basic = function(front, back, test) {
-  this.front = front;
-  this.back = back;
-  if (!test) this.log(front, back);
+  if (this instanceof Basic) {
+    this.front = front;
+    this.back = back;
+    if (!test) this.log(front, back);
+  } else {
+    return new Basic(front, back, test);
+  }
 };
 
 Basic.prototype.log = function(front, back) {
