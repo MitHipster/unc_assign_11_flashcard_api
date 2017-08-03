@@ -26,10 +26,13 @@ Cloze.prototype.log = function(text, cloze) {
   let card =
     'Full statement: ' + text + '\n' +
     'Cloze deletion: ' + cloze + '\n\n';
-  fs.appendFile('cloze.txt', card, function (error) {
-    if (error) throw error;
-    console.log(chalk.green('New cloze flashcard has been added.\n'));
-  });
+  try {
+    fs.appendFileSync('cloze.txt', card);
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+  console.log(chalk.green('New cloze flashcard has been added.\n'));
 };
 
 module.exports = Cloze;

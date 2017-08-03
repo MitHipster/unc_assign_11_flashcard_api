@@ -16,10 +16,13 @@ Basic.prototype.log = function(front, back) {
   let card =
     'Question: ' + front + '\n' +
     'Answer: ' + back + '\n\n';
-  fs.appendFile('basic.txt', card, function (error) {
-    if (error) throw error;
-    console.log(chalk.green('New basic flashcard has been added.\n'));
-  });
+  try {
+    fs.appendFileSync('basic.txt', card);
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+  console.log(chalk.green('New basic flashcard has been added.\n'));
 };
 
 module.exports = Basic;

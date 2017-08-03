@@ -97,7 +97,7 @@ let confirm = function (type, q, a) {
       if (type === 'basic') card = new Basic(q, a);
       if (type === 'cloze') card = new Cloze(q, a);
     }
-    setTimeout(runPrompt, 250);
+    runPrompt();
   });
 };
 
